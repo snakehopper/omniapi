@@ -1,13 +1,13 @@
 import psycopg2, psycopg2.extras
 import sys
 import getpass
-
+import os
 def sql_connect():
     global con
-    USER=getpass.getuser()
+    USER=os.getenv('HOME')
     try:
-      with open('/home/'+USER+'/.omni/sql.conf') as fp:
-        DBPORT="5432"
+      with open(USER+'/.omni/sql.conf') as fp:
+        DBPORT="3336"
         for line in fp:
           #print line
           if line.split('=')[0] == "sqluser":

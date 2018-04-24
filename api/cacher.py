@@ -6,7 +6,7 @@ from debug import *
 #remote server
 r = redis.StrictRedis(host=config.REDIS_HOST, port=config.REDIS_PORT, db=config.REDIS_DB)
 #local server
-l = redis.StrictRedis()
+l = redis.StrictRedis(host=config.REDIS_HOST, port=config.REDIS_PORT, db=2)
 
 try:
   expTime=config.BTCBAL_CACHE
@@ -18,7 +18,7 @@ def lInit(db):
     dbk=int(db)
   except:
     dbk=1
-  return redis.StrictRedis(db=dbk)
+  return redis.StrictRedis(host=config.REDIS_HOST, port=config.REDIS_PORT,db=dbk)
 
 def lGet(key):
   return l.get(key)
